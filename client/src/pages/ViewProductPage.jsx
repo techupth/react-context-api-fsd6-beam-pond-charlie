@@ -1,16 +1,32 @@
-import { useNavigate } from "react-router-dom";
-import { UserDataContext } from "../App";
+import { useNavigate, useParams } from "react-router-dom";
 import { useContext } from "react";
 
+import { UserDataContext } from "../App";
+import { ProductsDataContext } from "../App.jsx";
+
 function ViewProductPage() {
-  const { level } = useContext(UserDataContext);
+  const { level, avatar, username } = useContext(UserDataContext);
+  const { products } = useContext(ProductsDataContext);
+  const params = useParams();
+  const product = products.find((item) => item.id == params.id);
   const navigate = useNavigate();
   return (
     <div>
-      <h1>View Product Page</h1>
+      <div className="view-product-header">
+        <h1>View Product Page</h1>
+        <img src={avatar} alt={username + " pic"} width="50" height="50" />
+      </div>
       <div className="view-product-container">
-        <h2>Product Title</h2>
-        <p>Content</p>
+        <div className="product-preview">
+          <img
+            src={product.image}
+            alt={product.name + " product"}
+            width="250"
+            height="250"
+          />
+        </div>
+        <h2>{product.name}</h2>
+        <p>{product.description}</p>
       </div>
 
       <div className="product-promotion-box">

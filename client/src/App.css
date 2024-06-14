@@ -41,6 +41,11 @@ body {
   align-items: center;
 }
 
+.view-product-header {
+  display: flex;
+  justify-content: space-between;
+}
+
 .view-product-container {
   border: 5px solid var(--secondary-color);
   padding: 30px;
